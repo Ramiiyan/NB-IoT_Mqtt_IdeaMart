@@ -4,7 +4,8 @@
 #include <TinyGsmClient.h>
 #include <SoftwareSerial.h>
 
-#define RES_TOPIC  "/2952727675078424/tester/testing/v1/sub"
+// change these topics and mqtt details with your Ideamart developer portal.
+#define RES_TOPIC  "/2952727675078424/tester/testing/v1/sub" 
 #define SUB_TOPIC  "+/2952727675078424/tester/testing/v1/sub"
 #define PUB_TOPIC  "tester/testing/v1/common"
 
@@ -26,7 +27,7 @@ PubSubClient mqtt(client);
 String clientId = "";
 char getmsg[100];
 char setmsg[100];
-String on = "{\"action\":\"on\",\"param\":{\"mac\":\"2952727675078424\"}}";
+String on = "{\"action\":\"on\",\"param\":{\"mac\":\"2952727675078424\"}}"; //change with your mac address
 String off = "{\"action\":\"off\",\"param\":{\"mac\":\"2952727675078424\"}}";
 String cpsi;
 boolean ConnectToMQTT();
@@ -66,7 +67,7 @@ void CallBack(char *t, byte *payload, int l){
 }
 
 void sendVal(int val){
-  sprintf(setmsg,"{\"eventName\":\"Tester\",\"status\":\"\",\"value\":\"%ul\",\"param\":{\"mac\":\"2952727675078424\"}}",millis());
+  sprintf(setmsg,"{\"eventName\":\"Tester\",\"status\":\"\",\"value\":\"%ul\",\"param\":{\"mac\":\"2952727675078424\"}}",millis()); //change your mac address
   if (!mqtt.publish(PUB_TOPIC, setmsg)){
     Serial.println(F("Failed."));
   }else{
