@@ -5,12 +5,12 @@
 #include <SoftwareSerial.h>
 
 // change these topics and mqtt details with your Ideamart developer portal.
-#define RES_TOPIC  "XXXXXXXXXXXXX" 
-#define SUB_TOPIC  "XXXXXXXXXXXXX"
-#define PUB_TOPIC  "XXXXXXXXXXXXX"
+#define RES_TOPIC  "/2952727675078424/tester/testing/v1/sub"
+#define SUB_TOPIC  "+/2952727675078424/tester/testing/v1/sub"
+//#define PUB_TOPIC  "tester/testing/v1/common"
 
-#define MQTT_USERNAME "XXXXXXXXXXXXX"
-#define MQTT_PASSWORD "XXXXXXXXXXXXX"
+#define MQTT_USERNAME "tester-testing-v1_2589"
+#define MQTT_PASSWORD "1563971290_2589"
 #define MQTT_HOST "mqtt.iot.ideamart.io"
 #define MQTT_PORT 1883
 
@@ -27,14 +27,14 @@ PubSubClient mqtt(client);
 String clientId = "";
 char getmsg[100];
 char setmsg[100];
-String on = "{\"action\":\"on\",\"param\":{\"mac\":\"XXXXXXXXXXXXX\"}}"; //change with your mac address
-String off = "{\"action\":\"off\",\"param\":{\"mac\":\"XXXXXXXXXXXXX\"}}";
+String on = "{\"action\":\"on\",\"param\":{\"mac\":\"2952727675078424\"}}"; //change with your mac address
+String off = "{\"action\":\"off\",\"param\":{\"mac\":\"2952727675078424\"}}";
 String cpsi;
 boolean ConnectToMQTT();
 void sendVal(int cpsi);
 void CallBack(char *t, byte *payload, int l);
 String getCPSI();
-int pin = 9;
+int pin = 4;
 
 boolean ConnectToMQTT(){
   randomSeed(analogRead(5)); //analog pin 5 used to genarate random number
@@ -63,19 +63,19 @@ void CallBack(char *t, byte *payload, int l){
     digitalWrite(pin, LOW);
   }
   delay(1000);
-  //memset(getmsg, 0, sizeof(getmsg));
+  memset(getmsg, 0, sizeof(getmsg));
 }
 
-void sendVal(int val){
-  sprintf(setmsg,"{\"eventName\":\"Tester\",\"status\":\"\",\"value\":\"%ul\",\"param\":{\"mac\":\"XXXXXXXXXXXXX\"}}",millis()); //change your mac address
-  if (!mqtt.publish(PUB_TOPIC, setmsg)){
-    Serial.println(F("Failed."));
-  }else{
-    Serial.print(setmsg);
-    Serial.println(F("SEND:OK"));
-  }
-  delay(1000);
-}
+//void sendVal(int val){
+//  sprintf(setmsg,"{\"eventName\":\"Tester\",\"status\":\"\",\"value\":\"%ul\",\"param\":{\"mac\":\"2952727675078424\"}}",millis()); //change your mac address
+//  if (!mqtt.publish(PUB_TOPIC, setmsg)){
+//    Serial.println(F("Failed."));
+//  }else{
+//    Serial.print(setmsg);
+//    Serial.println(F("SEND:OK"));
+//  }
+//  delay(1000);
+//}
 
 String getCPSI(){
   SerialSIM.println("AT+CPSI?");

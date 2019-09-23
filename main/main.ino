@@ -1,3 +1,5 @@
+// DEFALUT Configuration for GSM
+
 #include "Settings.h"
 
 void setup()
@@ -11,8 +13,8 @@ void setup()
 
 
   SerialSIM.begin(4800);
-  modem.setNetworkMode(38); // 38-nbiot 13-gsm
-  modem.setPreferredMode(2);
+  modem.setNetworkMode(13); // 38-nbiot 13-gsm
+  //modem.setPreferredMode(2);
   modem.getModemName();
   
 
@@ -61,9 +63,9 @@ void loop()
   }
 
   delay(1000);
-  randomSeed(analogRead(0));
-  int cnt = random(10, 99);
-  Serial.println(cnt);
-  sendVal(cnt);
-  delay(1000);
+//  randomSeed(analogRead(0));
+//  int cnt = random(10, 99);
+//  Serial.println(cnt);
+//  sendVal(cnt);
+//  delay(1000);
 }
