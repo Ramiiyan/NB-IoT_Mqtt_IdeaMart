@@ -11,16 +11,16 @@
 //  #define SUB_TOPIC  "+/2951212455078424/testing/tester/v1/sub"
 //  #define PUB_TOPIC  "testing/tester/v1/common"
 
-#define RES_TOPIC  "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"   //Subscription Respose Topic
-#define SUB_TOPIC  "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" //Subscription Topic
-#define PUB_TOPIC  "XXXXXXXXXXXXXXXXXXXXXXXXXXX"      //Publishing Topic
+#define SUB_TOPIC  "+/2952727675078424/tester/testing/v1/sub" //Subscription Topic
+#define RES_TOPIC  "2952727675078424/tester/testing/v1/pub"   //Subscription Respose Topic
+#define PUB_TOPIC  "tester/testing/v1/common"      //Publishing Topic
 
 //Examples for Mqtt username, password
 //  #define MQTT_USERNAME "testing-tester-v1_9876"
 //  #define MQTT_PASSWORD "108644667_9876"
 
-  #define MQTT_USERNAME "XXXXXXXXXXXXXXXXXXXXX"
-  #define MQTT_PASSWORD "XXXXXXXXXXXXXXX"
+  #define MQTT_USERNAME "tester-testing-v1_2589"
+  #define MQTT_PASSWORD "1563971290_2589"
 
 // No need to change the mqtt host and port util you use Ideamart-IoT web portal.
 #define MQTT_HOST "mqtt.iot.ideamart.io" 
@@ -41,16 +41,17 @@ char getmsg[100];
 char setmsg[100];
 //change your Action Values and mac address.. 
 //Examples.. for Action 
-//  String on = "{\"action\":\"on\",\"param\":{\"mac\":\"2952727675078424\"}}"; 
-//  String off = "{\"action\":\"off\",\"param\":{\"mac\":\"2952727675078424\"}}";
-String on = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXXX\"}}"; 
-String off = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXX\"}}";
+//  String on = "{\"action\":\"on\",\"param\":{\"mac\":\"2951212455078424\"}}"; 
+//  String off = "{\"action\":\"off\",\"param\":{\"mac\":\"2951212455078424\"}}";
+String on = "{\"action\":\"on\",\"param\":{\"mac\":\"2952727675078424\"}}"; 
+String off = "{\"action\":\"off\",\"param\":{\"mac\":\"2952727675078424\"}}";
 String cpsi;
 boolean ConnectToMQTT();
-void sendVal(int cpsi);
+void sendVal(int val);
 void CallBack(char *t, byte *payload, int l);
 String getCPSI();
-int pin = 4;
+int pin = 4; // for LED output
+int button = 5; // for Button Input
 
 boolean ConnectToMQTT(){
   randomSeed(analogRead(5)); //analog pin 5 used to genarate random number
@@ -84,16 +85,16 @@ void CallBack(char *t, byte *payload, int l){
   memset(getmsg, 0, sizeof(getmsg));
 }
 
-//void sendVal(int val){
-//  sprintf(setmsg,"{\"eventName\":\"Tester\",\"status\":\"\",\"value\":\"%ul\",\"param\":{\"mac\":\"2952727675078424\"}}",millis()); //change your mac address
-//  if (!mqtt.publish(PUB_TOPIC, setmsg)){
-//    Serial.println(F("Failed."));
-//  }else{
-//    Serial.print(setmsg);
-//    Serial.println(F("SEND:OK"));
-//  }
-//  delay(1000);
-//}
+void sendVal(int val){
+  sprintf(setmsg,"{\"eventName\":\"Tester\",\"status\":\"\",\"value\":\"%d\",\"param\":{\"mac\":\"2952727675078424\"}}",val); //change your mac address
+  if (!mqtt.publish(PUB_TOPIC, setmsg)){
+    Serial.println(F("Failed."));
+  }else{
+    Serial.print(setmsg);
+    Serial.println(F("SEND:OK"));
+  }
+  delay(1000);
+}
 
 String getCPSI(){
   SerialSIM.println("AT+CPSI?");

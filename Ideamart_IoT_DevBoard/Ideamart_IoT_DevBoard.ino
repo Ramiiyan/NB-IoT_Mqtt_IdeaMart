@@ -5,7 +5,8 @@
 void setup()
 {
   Serial.begin(115200);
-  pinMode(pin, OUTPUT);
+  pinMode(pin, OUTPUT); //led output session 1
+  pinMode(button,INPUT_PULLUP);
   
   pinMode(ideaBoard_PWRKEY, OUTPUT);
   digitalWrite(ideaBoard_PWRKEY, HIGH);
@@ -46,7 +47,7 @@ void setup()
 
 void loop()
 {
-
+  
   if (mqtt.connected())
   {
     mqtt.loop();
@@ -61,6 +62,9 @@ void loop()
     ConnectToMQTT();
     delay(100);
   }
-
-  delay(1000);
+  Serial.print("ButtonState :");
+  int ButtonState = digitalRead(button);
+  Serial.println(ButtonState);
+  sendVal(ButtonState);
+  delay(1000); // delay for 1 second.
 }
