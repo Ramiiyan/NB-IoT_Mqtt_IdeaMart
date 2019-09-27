@@ -5,13 +5,25 @@
 #include <SoftwareSerial.h>
 
 // change these topics and mqtt details with your Ideamart developer portal.
-#define RES_TOPIC  "/2952727675078424/tester/testing/v1/sub"
-#define SUB_TOPIC  "+/2952727675078424/tester/testing/v1/sub"
-//#define PUB_TOPIC  "tester/testing/v1/common"
 
-#define MQTT_USERNAME "tester-testing-v1_2589"
-#define MQTT_PASSWORD "1563971290_2589"
-#define MQTT_HOST "mqtt.iot.ideamart.io"
+//Examples for Topic...
+//  #define RES_TOPIC  "/2951212455078424/testing/tester/v1/sub"
+//  #define SUB_TOPIC  "+/2951212455078424/testing/tester/v1/sub"
+//  #define PUB_TOPIC  "testing/tester/v1/common"
+
+#define RES_TOPIC  "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"   //Subscription Respose Topic
+#define SUB_TOPIC  "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" //Subscription Topic
+#define PUB_TOPIC  "XXXXXXXXXXXXXXXXXXXXXXXXXXX"      //Publishing Topic
+
+//Examples for Mqtt username, password
+//  #define MQTT_USERNAME "testing-tester-v1_9876"
+//  #define MQTT_PASSWORD "108644667_9876"
+
+  #define MQTT_USERNAME "XXXXXXXXXXXXXXXXXXXXX"
+  #define MQTT_PASSWORD "XXXXXXXXXXXXXXX"
+
+// No need to change the mqtt host and port util you use Ideamart-IoT web portal.
+#define MQTT_HOST "mqtt.iot.ideamart.io" 
 #define MQTT_PORT 1883
 
 #define ideaBoard_PWRKEY 13
@@ -27,8 +39,12 @@ PubSubClient mqtt(client);
 String clientId = "";
 char getmsg[100];
 char setmsg[100];
-String on = "{\"action\":\"on\",\"param\":{\"mac\":\"2952727675078424\"}}"; //change with your mac address
-String off = "{\"action\":\"off\",\"param\":{\"mac\":\"2952727675078424\"}}";
+//change your Action Values and mac address.. 
+//Examples.. for Action 
+//  String on = "{\"action\":\"on\",\"param\":{\"mac\":\"2952727675078424\"}}"; 
+//  String off = "{\"action\":\"off\",\"param\":{\"mac\":\"2952727675078424\"}}";
+String on = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXXX\"}}"; 
+String off = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXX\"}}";
 String cpsi;
 boolean ConnectToMQTT();
 void sendVal(int cpsi);
@@ -51,10 +67,12 @@ boolean ConnectToMQTT(){
 }
 
 void CallBack(char *t, byte *payload, int l){
-  Serial.println(F("******************"));
+  Serial.println(F("Action message is Received."));
   for (int i = 0; i < l; i++){
     getmsg[i] = (char)payload[i];
   }
+  Serial.print("Message : ");
+  Serial.println(getmsg);
   if (on == getmsg){
     Serial.println(F("Action : ON"));
     digitalWrite(pin, HIGH);

@@ -14,7 +14,7 @@ void setup()
 
   SerialSIM.begin(4800);
   modem.setNetworkMode(13); // 38-nbiot 13-gsm
-  //modem.setPreferredMode(2);
+  //modem.setPreferredMode(2);  //<-- Uncomment this, if you are using nbiot,.
   modem.getModemName();
   
 
@@ -23,7 +23,7 @@ void setup()
   Serial.println("Finding Network...");
   if (!modem.waitForNetwork())
   {
-    Serial.println("Network Fail");
+    Serial.println("Network Fail");  // try to restart the Ideamart DevBoard. or Reupload the code. check whether Sim Install properly.
     while (true);
   }
   else
@@ -31,9 +31,9 @@ void setup()
     Serial.println("Network identified.");
     Serial.print("Signal Strength : ");
     Serial.println(modem.getSignalQuality());
-    if (!modem.gprsConnect("nbiot", "", ""))
+    if (!modem.gprsConnect("dialogbb", "", ""))
     {
-      Serial.println("GPRS Fail");
+      Serial.println("GPRS Fail");  //restart the devBoard. 
     }
     else
     {
@@ -63,9 +63,4 @@ void loop()
   }
 
   delay(1000);
-//  randomSeed(analogRead(0));
-//  int cnt = random(10, 99);
-//  Serial.println(cnt);
-//  sendVal(cnt);
-//  delay(1000);
 }
