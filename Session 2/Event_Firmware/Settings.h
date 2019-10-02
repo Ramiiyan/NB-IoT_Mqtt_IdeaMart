@@ -12,10 +12,10 @@
 //  #define MQTT_PASSWORD   "108644667_9876"
 
 // Replace the XXXX with your developer credentials
-#define PUB_TOPIC           "tester/testing/v1/common" 
+#define PUB_TOPIC           "XXXXXXXXXXXXXXXXXXXXXXXXX" 
 
-#define MQTT_USERNAME       "tester-testing-v1_2589"
-#define MQTT_PASSWORD       "1563971290_2589"
+#define MQTT_USERNAME       "XXXXXXXXXXXXXXXXXXXXXX"
+#define MQTT_PASSWORD       "XXXXXXXXXXXXXXXX"
 
 #define MQTT_HOST           "mqtt.iot.ideamart.io" 
 #define MQTT_PORT           1883

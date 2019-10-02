@@ -18,17 +18,17 @@
 //  String on   = "{\"action\":\"on\",\"param\":{\"mac\":\"2951212455078424\"}}"; 
 //  String off  = "{\"action\":\"off\",\"param\":{\"mac\":\"2951212455078424\"}}";
 
-String on       = "{\"action\":\"on\",\"param\":{\"mac\":\"7431709039831946\"}}"; 
-String off      = "{\"action\":\"off\",\"param\":{\"mac\":\"7431709039831946\"}}";
+String on       = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXX\"}}"; 
+String off      = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXX\"}}";
 
 String clientId = "";
 char getmsg[100];
 String cpsi;
-int pin         = 4;                          // for LED output
+int ledPin         = 4;                          // for LED output
 
 void setup() {
   Serial.begin(115200);
-  pinMode(pin, OUTPUT);         //LED output pin - 4
+  pinMode(ledPin, OUTPUT);         //LED output pin - 4
 
   pinMode(ideaBoard_PWRKEY, OUTPUT);
   digitalWrite(ideaBoard_PWRKEY, HIGH);
@@ -107,13 +107,13 @@ void CallBack(char *t, byte *payload, int l){
 
   if (on == getmsg){
     Serial.println(F("Action : ON"));
-    digitalWrite(pin, HIGH);
+    digitalWrite(ledPin, HIGH);
   }else if (off == getmsg){
     Serial.println(F("Action : OFF"));
-    digitalWrite(pin, LOW);
+    digitalWrite(ledPin, LOW);
   }
 
-  delay(1000);
+  delay(500);
   memset(getmsg, 0, sizeof(getmsg));
 
 }
