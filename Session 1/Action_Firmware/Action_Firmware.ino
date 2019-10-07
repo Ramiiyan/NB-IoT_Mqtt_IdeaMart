@@ -24,7 +24,7 @@ String off      = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXX\"}}
 String clientId = "";
 char getmsg[100];
 String cpsi;
-int ledPin         = 4;                          // for LED output
+int ledPin      = 4;                          // for LED output
 
 void setup() {
   Serial.begin(115200);
@@ -50,7 +50,7 @@ void setup() {
     Serial.print(F("Signal Strength : "));
     Serial.println(modem.getSignalQuality());
 
-    if (!modem.gprsConnect(NB_APN, "", "")) {
+    if (!modem.gprsConnect(GSM_APN, "", "")) {  //NB_APN for nbiot
       Serial.println(F("GPRS Fail"));
     }else {
       Serial.println(F("GPRS Connected"));

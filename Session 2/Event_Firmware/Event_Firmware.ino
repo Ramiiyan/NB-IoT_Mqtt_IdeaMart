@@ -2,6 +2,7 @@
  * This code is for Event Configuration.
  * It's only Publishing the Button State to Developer Portal. 
  * Upload this code to DevBoard that you Connected the Push-button.
+ * PushButton Connected pin - 5
  * 
  * DEFALUT Configuration for GSM
  * 
