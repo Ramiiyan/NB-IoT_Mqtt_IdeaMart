@@ -8,7 +8,6 @@
 
 //  Examples for Topic...
 //  #define SUB_TOPIC       "+/2951212455078424/testing/tester/v1/sub"
-//  #define RES_TOPIC       "/2951212455078424/testing/tester/v1/sub"
 
 //  Examples for Mqtt username, password
 //  #define MQTT_USERNAME   "testing-tester-v1_9876"
@@ -16,7 +15,6 @@
 
 // Replace the XXXX with your developer credentials
 #define SUB_TOPIC           "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" //Subscription Topic
-#define RES_TOPIC           "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"   //Subscription Respose Topic
 
 #define MQTT_USERNAME       "XXXXXXXXXXXXXXXXXXXXXX"
 #define MQTT_PASSWORD       "XXXXXXXXXXXXXXXX"
@@ -37,6 +35,7 @@ TinyGsm modem(SerialSIM);
 TinyGsmClient client(modem);
 PubSubClient mqtt(client);
 
+//functions
 boolean ConnectToMQTT();
 void CallBack(char *t, byte *payload, int l);
 String getCPSI();
