@@ -18,8 +18,8 @@
 //  String on   = "{\"action\":\"on\",\"param\":{\"mac\":\"2951212455078424\"}}"; 
 //  String off  = "{\"action\":\"off\",\"param\":{\"mac\":\"2951212455078424\"}}";
 
-String on       = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXX\"}}"; 
-String off      = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXX\"}}";
+String on       = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXXXX\"}}"; 
+String off      = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXXXX\"}}";
 
 String clientId = "";
 char getmsg[100];
@@ -35,8 +35,8 @@ void setup() {
   delay(10);
 
   SerialSIM.begin(4800);
-  modem.setNetworkMode(13); // 38-nbiot 13-gsm
-  //modem.setPreferredMode(2);  //<-- Uncomment this, if you are using nbiot,.
+  modem.setNetworkMode(38); // 38-nbiot 13-gsm
+  modem.setPreferredMode(2);  //<-- Uncomment this, if you are using nbiot(nbiot),. comment this if you are using dialogbb(gsm)
   modem.getModemName();
 
   modem.restart();
@@ -50,7 +50,7 @@ void setup() {
     Serial.print(F("Signal Strength : "));
     Serial.println(modem.getSignalQuality());
 
-    if (!modem.gprsConnect(GSM_APN, "", "")) {  //NB_APN for nbiot
+    if (!modem.gprsConnect(NB_APN, "", "")) {  //NB_APN for nbiot || GSM_APN for gsm
       Serial.println(F("GPRS Fail"));
     }else {
       Serial.println(F("GPRS Connected"));
