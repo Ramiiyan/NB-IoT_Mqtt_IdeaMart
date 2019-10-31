@@ -15,13 +15,13 @@
 //  #define MQTT_USERNAME   "testing-tester-v1_9876"
 //  #define MQTT_PASSWORD   "108644667_9876"
 
-// Replace the XXXX with your developer credentials
+// Replace the XXXX with your developer credentials 2952727675078424
 #define SUB_TOPIC           "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" //Subscription Topic
 #define RES_TOPIC           "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"   //Subscription Respose Topic
-#define PUB_TOPIC           "XXXXXXXXXXXXXXXXXXXXXXXX"                 //Publishing Topic
+#define PUB_TOPIC           "XXXXXXXXXXXXXXXXXXXXXXXXX"                 //Publishing Topic
 
-#define MQTT_USERNAME       "XXXXXXXXXXXXXXXXXXXXX"
-#define MQTT_PASSWORD       "XXXXXXXXXXXXXXXXX"
+#define MQTT_USERNAME       "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+#define MQTT_PASSWORD       "XXXXXXXXXXXXXXXXXX"
 
 // No need to change the mqtt host and port util you use Ideamart-IoT developer portal.
 #define MQTT_HOST           "mqtt.iot.ideamart.io"
